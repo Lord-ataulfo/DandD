@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhaan’Anhta el que se transforma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ephesis': ['Ephesis', 'cursive'],
+                    },
+                    colors: {
+                        'rhananhta-title': '#205F24',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Header (Copiar y pegar el header de index.html) -->
+    <header class="bg-black text-white font-bold text-xl sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex-shrink-0">
+                <a href="index.html"><img src="img/logo.jpeg" alt="Logo"
+                        class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover border-2 border-white"></a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="hover:text-gray-300">Home</a>
+                <div class="relative group">
+                    <button class="hover:text-gray-300 focus:outline-none">Aventureros <span
+                            class="text-xs">▾</span></button>
+                    <div
+                        class="absolute left-0 mt-2 w-48 bg-black text-white rounded-md shadow-lg py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out transform scale-95 group-hover:scale-100 invisible group-hover:visible z-20">
+                        <a href="romulo.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rómulo</a>
+                        <a href="rhananhta.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rhaan’Anhta</a>
+                    </div>
+                </div>
+                <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="burger-menu" class="text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm md:hidden hidden z-40">
+            <div id="mobile-menu-content"
+                class="absolute top-0 right-0 h-full w-3/4 max-w-sm bg-black p-6 shadow-xl transform translate-x-full">
+                <button class="absolute top-4 right-4 text-white"
+                    onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <nav class="flex flex-col space-y-6 mt-16 text-xl">
+                    <a href="index.html" class="hover:text-gray-300">Home</a>
+                    <div>
+                        <a href="#" id="aventureros-mobile-toggle"
+                            class="hover:text-gray-300 flex justify-between items-center">Aventureros <span
+                                class="text-xs">▾</span></a>
+                        <div id="aventureros-mobile-submenu" class="ml-4 mt-2 space-y-2 hidden">
+                            <a href="romulo.html" class="block hover:text-gray-300">Rómulo</a>
+                            <a href="rhananhta.html" class="block hover:text-gray-300">Rhaan’Anhta</a>
+                        </div>
+                    </div>
+                    <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido de Rhaan’Anhta -->
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        <h1 class="text-3xl md:text-5xl font-bold text-rhananhta-title text-center my-8 text-stroke-black">Rhaan’Anhta
+            el que se transforma</h1>
+
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+            <!-- Video a la Izquierda -->
+            <div class="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 md:sticky md:top-28">
+                <video src="vdo/rhananhta.mp4" autoplay loop muted playsinline controls
+                    class="w-full rounded-lg shadow-xl aspect-[9/16] object-cover"></video>
+            </div>
+
+            <!-- Texto a la Derecha -->
+            <div class="w-full md:w-3/5 lg:w-2/3 font-ephesis text-xl text-black text-justify space-y-4">
+                <p>En los pantanos brumosos y las selvas profundas, donde el aire es denso y los sonidos son extraños,
+                    allí salta Rhaan’Anhta. Un Grippli en toda la extensión de la palabra, su piel moteada le permite
+                    camuflarse entre la vegetación exuberante. Su mente, sin embargo, es todo menos camuflada; es un
+                    torbellino de ideas peculiares, estrategias inesperadas y un humor que a menudo solo él entiende.
+                </p>
+                <p>Un síndrome de abstinencia perpetuo lo acompaña, un recordatorio constante de algo perdido o quizás
+                    algo que nunca tuvo. Este anhelo se manifiesta en su búsqueda incesante de conocimiento y
+                    respuestas. ¿Qué fue de sus antiguos compañeros? ¿Dónde están los maestros que le enseñaron los
+                    secretos de la transformación y la supervivencia? Estas preguntas son el motor de su existencia
+                    errante.</p>
+                <p>Inseparable de él es su gecko, un compañero silencioso y observador, a menudo posado en su hombro o
+                    cabeza. Este pequeño reptil parece ser el único ser que comprende la complejidad de Rhaan’Anhta, o
+                    al menos, el único que no lo juzga por sus excentricidades. Juntos, forman un dúo improbable pero
+                    formidable.</p>
+                <p>Como Ranger, Rhaan’Anhta es un maestro de muchas formas. Puede adoptar la apariencia y las
+                    habilidades de diversas criaturas del bosque, adaptándose a cualquier entorno o desafío. Esta
+                    capacidad de transformación no es solo física; también es un reflejo de su mente adaptable y su
+                    habilidad para pensar fuera de los esquemas convencionales.</p>
+                <p>Su misión es clara, aunque el camino sea tortuoso. Debe desentrañar el misterio que envuelve el
+                    destino de su gente y sus mentores. Cada pista, cada encuentro, lo acerca un poco más a la verdad, o
+                    quizás, a un nuevo enigma. No se detendrá hasta que las piezas del rompecabezas encajen.</p>
+                <p>Rhaan’Anhta no es un héroe convencional. Es un ser de contradicciones: sabio y errático, serio y
+                    juguetón, un solitario que busca desesperadamente conexión. Pero en su peculiaridad reside su
+                    fuerza.</p>
+                <p>Los Grippli son conocidos por su agilidad y conexión con la naturaleza, y Rhaan’Anhta es un ejemplo
+                    excepcional.</p>
+                <p>El "síndrome de abstinencia" podría ser una metáfora de su desconexión con su tribu o una necesidad
+                    mágica incumplida.</p>
+                <p>Su gecko no es una simple mascota; algunos sospechan que es un familiar o un espíritu guía.</p>
+                <p>Las transformaciones de Rhaan’Anhta son fluidas y rápidas, a menudo sorprendiendo a sus enemigos.</p>
+                <p>Domina el uso del arco corto y la cerbatana, utilizando venenos naturales con gran pericia.</p>
+                <p>A pesar de su apariencia anfibia, Rhaan’Anhta tiene una sorprendente resistencia a climas áridos.</p>
+                <p>Su conocimiento de plantas medicinales y venenosas es vasto, aprendido de sus maestros desaparecidos.
+                </p>
+                <p>A menudo habla en acertijos o metáforas, lo que puede ser frustrante para sus compañeros.</p>
+                <p>La búsqueda de sus maestros lo ha llevado a ruinas antiguas y lugares olvidados por el tiempo.</p>
+                <p>Tiene una extraña afinidad por los insectos, a los que considera "pequeños filósofos".</p>
+                <p>Aunque parece caótico, sus acciones suelen tener un propósito oculto y una lógica interna.</p>
+                <p>La lealtad de Rhaan’Anhta, una vez ganada, es feroz e inquebrantable.</p>
+                <p>Teme que el destino de sus maestros esté ligado a una oscuridad ancestral que resurge.</p>
+                <p>Y así, el Grippli transformista continúa su viaje, un enigma viviente en un mundo lleno de misterios.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <button id="toTopBtn"
+        class="fixed bottom-5 right-5 bg-gray-700 text-white p-3 rounded-full shadow-lg hidden hover:bg-gray-600 transition-colors z-30">↑</button>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

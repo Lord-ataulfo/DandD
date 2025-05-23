@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rómulo el Cruzado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ephesis': ['Ephesis', 'cursive'],
+                    },
+                    colors: {
+                        'romulo-title': '#B22323',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Header (Copiar y pegar el header de index.html o crear un componente si usaras un framework) -->
+    <header class="bg-black text-white font-bold text-xl sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex-shrink-0">
+                <a href="index.html"><img src="img/logo.jpg" alt="Logo"
+                        class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover border-2 border-white"></a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="hover:text-gray-300">Home</a>
+                <div class="relative group">
+                    <button class="hover:text-gray-300 focus:outline-none">Aventureros <span
+                            class="text-xs">▾</span></button>
+                    <div
+                        class="absolute left-0 mt-2 w-48 bg-black text-white rounded-md shadow-lg py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out transform scale-95 group-hover:scale-100 invisible group-hover:visible z-20">
+                        <a href="romulo.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rómulo</a>
+                        <a href="rhananhta.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rhaan’Anhta</a>
+                    </div>
+                </div>
+                <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="burger-menu" class="text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm md:hidden hidden z-40">
+            <div id="mobile-menu-content"
+                class="absolute top-0 right-0 h-full w-3/4 max-w-sm bg-black p-6 shadow-xl transform translate-x-full">
+                <button class="absolute top-4 right-4 text-white"
+                    onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <nav class="flex flex-col space-y-6 mt-16 text-xl">
+                    <a href="index.html" class="hover:text-gray-300">Home</a>
+                    <div>
+                        <a href="#" id="aventureros-mobile-toggle"
+                            class="hover:text-gray-300 flex justify-between items-center">Aventureros <span
+                                class="text-xs">▾</span></a>
+                        <div id="aventureros-mobile-submenu" class="ml-4 mt-2 space-y-2 hidden">
+                            <a href="romulo.html" class="block hover:text-gray-300">Rómulo</a>
+                            <a href="rhananhta.html" class="block hover:text-gray-300">Rhaan’Anhta</a>
+                        </div>
+                    </div>
+                    <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido de Rómulo -->
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        <h1 class="text-3xl md:text-5xl font-bold text-romulo-title text-center my-8 text-stroke-black">Rómulo el
+            Cruzado</h1>
+
+        <div class="flex flex-col md:flex-row gap-8 items-start">
+            <!-- Video a la Izquierda -->
+            <div class="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 md:sticky md:top-28">
+                <video src="vdo/romulo.mp4" autoplay loop muted playsinline controls
+                    class="w-full rounded-lg shadow-xl aspect-[9/16] object-cover"></video>
+            </div>
+
+            <!-- Texto a la Derecha -->
+            <div class="w-full md:w-3/5 lg:w-2/3 font-ephesis text-2xl text-black text-justify space-y-4">
+                <p>Historia de Rómulo
+                    : Entre la espesura del bosque vive Rómulo, de raza
+                    Lupin de clase cruzado, de pelaje blanco y algunos mechones grises, ojos verdes
+                    ultramarine encendidos, de complexión atlética y fuerte, blande su espadón y
+                    vida junto con su ardiente fe en la diosa Ehlonna y protege todo lo
+                    vivo y bondadoso.</p>
+                <p>Diario :
+                    Viví tranquilamente en mis amados bosques cerca de la Bruma
+                    solar en Niveus es allí que conocí a Albus mi maestro y tutor el cual me
+                    enseñó todo sobre la fe y las tres disciplinas en las cuales él se entrenó y verso
+                    hasta su maestría. La disciplina del dragón de piedra , El cuervo blanco
+                    y El espíritu devoto después de años de práctica y de cumplir con el Aullido
+                    blanco, Rito en el cual acompañé a mi maestro. Mismo en el que se le nombró
+                    dirigente de mi pueblo.</p>
+                <p>Me encontré en unos de mis incontables entrenamientos de meditación en
+                    cascadas, posturas de resistencia para templar la piel, romper ataques como si
+                    la madera pegara sobre una roca, levantamiento de troncos, técnicas de espadón
+                    como mi especialidad y rezos en el altar a Ehlonna</p>
+                <p>Es allí en la práctica de espada viendo a mi maestro, me di cuenta que en
+                    todos nuestros viajes y peleando a su
+                    lado ,en cada una de esas batallas mi maestro se destaco como alguien excepcionalmente fuerte, justo
+                    y bendecido
+                    por la diosa Ehlonna</p>
+                <p>Su fuerza era tal que podía deshacer rocas con sus garras y parar batallas solo con su imponente
+                    mirada, después
+                    del entrenamiento mientras hacíamos guardia en la entrada del pueblo, me contó cómo en sus
+                    legendarias
+                    aventuras combatió con diferentes tipos de criaturas, humanos y seres extra planares, pero sobre
+                    todo me narró con
+                    mucho detalle cómo es que la diosa, sus recuerdos de familia, el amor de su esposa y su fe siempre
+                    lo acompañaron
+                    y templaron su juicio y fortaleza.</p>
+                <p>Sus diversas cicatrices eran prueba de su experiencia y aunque yo mismo poseía algunas, no podía
+                    compararme
+                    con la fortaleza de mi maestro. A demás de mi tutor es hermano de mi padre Remo, el terror de los
+                    Imps
+                    tanto él como mi madre Lira conocida por su hermoso canto desaparecieron cuando fui niño a causa del
+                    engaño
+                    de una humana llamada Danira</p>
+                <p>Mi tío y yo llevamos años buscándola y creemos por la información que recolectamos, que ella en
+                    realidad es un
+                    cambia formas, misma y mismos que han denigrado la historia de nuestra raza usando nuestra forma
+                    pura en sus
+                    actos de crueldad y es por ello y por lo que sufrimos tanto yo como mi pueblo por estos embusteros y
+                    seres extra
+                    planares que no tienen respeto por la vida y la naturaleza, es que vivimos siempre alerta junto a mi
+                    tío y mi
+                    pueblo, protegiendo el legado de mis padres y de mi diosa, haciendo honor a las enseñanzas de mi
+                    maestro y
+                    esforzándome por superarme y ser tan bueno como lo es él.</p>
+
+            </div>
+        </div>
+    </main>
+
+    <button id="toTopBtn"
+        class="fixed bottom-5 right-5 bg-gray-700 text-white p-3 rounded-full shadow-lg hidden hover:bg-gray-600 transition-colors z-30">↑</button>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

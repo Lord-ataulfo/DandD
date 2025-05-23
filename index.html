@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura Épica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ephesis': ['Ephesis', 'cursive'],
+                        'noto-sans-gothic': ['Noto Sans Gothic', 'sans-serif'],
+                    },
+                    colors: {
+                        'custom-purple': '#791B4D',
+                        'hero-text-gray': '#9E9B9B',
+                        'aventureros-bg': '#DBD5D5',
+                    },
+                    height: {
+                        '95vh': '95vh',
+                        '90px': '90px',
+                    },
+                    spacing: {
+                        '150px': '150px',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-black text-white font-bold text-xl sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Contenedor Izquierda (Logo) -->
+            <div class="flex-shrink-0">
+                <a href="index.html">
+                    <img src="img/logo.jpeg" alt="Logo"
+                        class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover border-2 border-white">
+                </a>
+            </div>
+
+            <!-- Contenedor Derecha (Menú) - Desktop -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="hover:text-gray-300">Home</a>
+                <div class="relative group">
+                    <button class="hover:text-gray-300 focus:outline-none">
+                        Aventureros <span class="text-xs">▾</span>
+                    </button>
+                    <div
+                        class="absolute left-0 mt-2 w-48 bg-black text-white rounded-md shadow-lg py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out transform scale-95 group-hover:scale-100 invisible group-hover:visible z-20">
+                        <a href="romulo.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rómulo</a>
+                        <a href="rhananhta.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rhaan’Anhta</a>
+                    </div>
+                </div>
+                <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
+            </nav>
+
+            <!-- Botón Menú Hamburguesa - Mobile -->
+            <div class="md:hidden">
+                <button id="burger-menu" class="text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm md:hidden hidden z-40">
+            <div id="mobile-menu-content"
+                class="absolute top-0 right-0 h-full w-3/4 max-w-sm bg-black p-6 shadow-xl transform translate-x-full">
+                <button id="close-mobile-menu" class="absolute top-4 right-4 text-white md:hidden"
+                    onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <nav class="flex flex-col space-y-6 mt-16 text-xl">
+                    <a href="index.html" class="hover:text-gray-300">Home</a>
+                    <div>
+                        <a href="#" id="aventureros-mobile-toggle"
+                            class="hover:text-gray-300 flex justify-between items-center">
+                            Aventureros <span class="text-xs">▾</span>
+                        </a>
+                        <div id="aventureros-mobile-submenu" class="ml-4 mt-2 space-y-2 hidden">
+                            <a href="romulo.html" class="block hover:text-gray-300">Rómulo</a>
+                            <a href="rhananhta.html" class="block hover:text-gray-300">Rhaan’Anhta</a>
+                        </div>
+                    </div>
+                    <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="h-95vh relative overflow-hidden bg-gray-800">
+        <!-- Carrusel de Imágenes -->
+        <div id="hero-carousel" class="absolute inset-0 w-full h-full">
+            <img src="img/carrusel-1.jpeg" alt="Aventura 1" class="carousel-item">
+            <img src="img/carrusel-2.jpeg" alt="Aventura 2" class="carousel-item">
+            <img src="img/carrusel-3.jpeg" alt="Aventura 3" class="carousel-item">
+        </div>
+        <!-- Contenido de Texto -->
+        <div class="absolute inset-0 flex flex-col justify-center items-start p-8 md:p-16 bg-black bg-opacity-30">
+            <h1 id="hero-text-1" class="text-4xl md:text-6xl lg:text-7xl text-white font-bold opacity-0">Una aventura
+                épicamente emocionante</h1>
+            <p id="hero-text-2" class="text-2xl md:text-3xl text-hero-text-gray font-ephesis mt-1 opacity-0">By Master
+                Kevin</p>
+        </div>
+    </section>
+
+    <!-- Bienvenida Section -->
+    <section id="bienvenida" class="py-12 md:py-20 px-4 bg-white">
+        <div class="container mx-auto flex flex-col md:flex-row gap-8 md:gap-12">
+
+            <!-- Contenedor del Texto (Primer contenedor) -->
+            <div
+                class="w-full md:w-1/2 flex flex-col justify-center order-1 md:order-1 p-4 md:p-6 bg-gray-100 rounded-lg shadow">
+                <p id="" class="text-xl md:text-2xl lg:text-3xl leading-relaxed text-gray-800 text-center md:text-left">
+                    Bienvenidos a esta aventura, Creada por mí Master Kevin, Brindemos por nuestros aventureros,
+                    esperando lleguen al final
+                </p>
+            </div>
+
+            <!-- Contenedor del Video (Segundo contenedor) -->
+            <div class="w-full md:w-1/2 order-2 md:order-2 flex">
+                <video src="vdo/brindis.mp4" autoplay loop muted playsinline
+                    class="w-full h-full object-cover rounded-lg shadow-xl">
+                    Tu navegador no soporta el tag de video.
+                </video>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Aventureros Section -->
+    <section id="personajes" class="bg-aventureros-bg py-12 md:py-20 px-4">
+        <div class="container mx-auto">
+            <h1
+                class="text-white text-stroke-black text-3xl sm:text-4xl md:text-5xl font-bold text-center uppercase mb-10 md:mb-16">
+                Aventureros</h1>
+
+            <div
+                class="flex overflow-x-auto space-x-8 md:space-x-150px pb-8 justify-start md:justify-center items-stretch snap-x snap-mandatory md:snap-none">
+                <!-- Tarjeta Rómulo -->
+                <div
+                    class="bg-white rounded-lg shadow-xl p-6 w-[280px] sm:w-[320px] flex-shrink-0 flex flex-col justify-between transform transition-all duration-500 hover:scale-110 hover:rotate-[360deg] snap-center">
+                    <div>
+                        <h2
+                            class="text-custom-purple font-ephesis font-bold text-2xl text-center mb-3 h-16 flex items-center justify-center">
+                            Rómulo</h2>
+                        <img src="img/romulo.jpg" alt="Rómulo" class="w-full h-48 object-cover rounded mb-3">
+                        <p class="font-ephesis text-xl text-black mb-4 h-40 line-clamp-custom">
+                            Entre la espesura del bosque vive Rómulo, de raza Lupinde clase cruzado, de pelaje blanco y
+                            algunos mechones grises, ojos verdes ultramarine encendidos, de complexión atlética y
+                            fuerte, blande su espadón y vida junto con su ardiente fe en la diosa Ehlonna y protege todo
+                            lo vivo y bondadoso.
+                        </p>
+                    </div>
+                    <a href="romulo.html"
+                        class="block bg-custom-purple text-white text-center py-2.5 px-4 rounded hover:bg-purple-800 transition-colors w-full mt-auto">Visitar</a>
+                </div>
+
+                <!-- Tarjeta Rhaan’Anhta -->
+                <div
+                    class="bg-white rounded-lg shadow-xl p-6 w-[280px] sm:w-[320px] flex-shrink-0 flex flex-col justify-between transform transition-all duration-500 hover:scale-110 hover:rotate-[360deg] snap-center">
+                    <div>
+                        <h2
+                            class="text-custom-purple font-ephesis font-bold text-2xl text-center mb-3 h-16 flex items-center justify-center">
+                            Rhaan’Anhta</h2>
+                        <img src="img/ranata.jpg" alt="Rhaan’Anhta" class="w-full h-48 object-cover rounded mb-3">
+                        <p class="font-ephesis text-xl text-black mb-4 h-40 line-clamp-custom">
+                            Un Grippli en toda su extensión, con una mente peculiar y un síndrome de abstinencia que
+                            nunca se va, su gecko inseparable, un Ranger maestro de muchas formas, con la misión de
+                            saber que sucedió con sus antiguos compañero y maestros.
+                        </p>
+                    </div>
+                    <a href="rhananhta.html"
+                        class="block bg-custom-purple text-white text-center py-2.5 px-4 rounded hover:bg-purple-800 transition-colors w-full mt-auto">Visitar</a>
+                </div>
+
+                <!-- Tarjeta Master Kevin -->
+                <div
+                    class="bg-white rounded-lg shadow-xl p-6 w-[280px] sm:w-[320px] flex-shrink-0 flex flex-col justify-between transform transition-all duration-500 hover:scale-110 hover:rotate-[360deg] snap-center">
+                    <div>
+                        <h2
+                            class="text-custom-purple font-ephesis font-bold text-2xl text-center mb-3 h-16 flex items-center justify-center">
+                            Master Kevin</h2>
+                        <img src="img/masterkevin.jpeg" alt="Master Kevin"
+                            class="w-full h-48 object-cover rounded mb-3">
+                        <p class="font-ephesis text-xl text-black mb-4 h-40 line-clamp-custom">
+                            Solo una frase lo describe ‘El todo poderoso’ y nada más importa en este mundo, su palabra
+                            es ley y su voluntad es el destino de los aventureros y tal vez del mundo entero.
+                        </p>
+                    </div>
+                    <a href="masterkevin.html"
+                        class="block bg-custom-purple text-white text-center py-2.5 px-4 rounded hover:bg-purple-800 transition-colors w-full mt-auto">Visitar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-red-600 text-lg text-center py-6 h-90px flex items-center justify-center">
+        <p>© Derechos reservados Unit00 2025</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
