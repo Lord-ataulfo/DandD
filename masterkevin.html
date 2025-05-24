@@ -4,49 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Kevin</title>
+    <title>Master Kevin - Aventura Épica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Noto+Sans+Gothic:wght@400;700&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        'noto-sans-gothic': ['Noto Sans Gothic', 'sans-serif'],
+                        'ephesis': ['Ephesis', 'cursive'],
+                        'noto-sans-gothic': ['"Noto Sans Gothic"', 'sans-serif'],
                     },
                     colors: {
-                        'masterkevin-title': '#000000',
-                    }
+                        // Master Kevin title color is black, default Tailwind `text-black` is fine.
+                    },
+                    transitionDelay: { '500': '500ms' }
                 }
             }
         }
     </script>
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-100">
 
-    <!-- Header (Copiar y pegar el header de index.html) -->
-    <header class="bg-black text-white font-bold text-xl sticky top-0 z-50">
+    <!-- Header (Idéntico) -->
+    <header id="header" class="bg-black text-white font-bold text-xl sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex-shrink-0">
-                <a href="index.html"><img src="img/logo.jpeg" alt="Logo"
-                        class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover border-2 border-white"></a>
+            <div
+                class="w-16 h-16 md:w-20 md:h-20 bg-gray-300 rounded-full flex items-center justify-center overflow-hidden">
+                <img src="img/logo.jpeg" alt="Logotipo" class="w-full h-full object-cover">
             </div>
-            <nav class="hidden md:flex items-center space-x-6">
-                <a href="index.html" class="hover:text-gray-300">Home</a>
-                <div class="relative group">
-                    <button class="hover:text-gray-300 focus:outline-none">Aventureros <span
-                            class="text-xs">▾</span></button>
-                    <div
-                        class="absolute left-0 mt-2 w-48 bg-black text-white rounded-md shadow-lg py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out transform scale-95 group-hover:scale-100 invisible group-hover:visible z-20">
-                        <a href="romulo.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rómulo</a>
-                        <a href="rhananhta.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rhaan’Anhta</a>
-                    </div>
-                </div>
-                <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
+            <nav class="hidden md:flex items-center">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-gray-400 transition-colors">Home</a></li>
+                    <li class="relative group">
+                        <button type="button" class="hover:text-gray-400 transition-colors">Aventureros</button>
+                        <ul
+                            class="dropdown-menu absolute left-0 mt-2 w-48 bg-black text-white p-2 rounded shadow-lg z-20">
+                            <li><a href="romulo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rómulo</a></li>
+                            <li><a href="rhananhta.html"
+                                    class="block px-4 py-2 hover:bg-gray-700 rounded">Rhaan’Anhta</a></li>
+                            <li><a href="puhleedo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Puh lee do</a>
+                            </li>
+                            <li><a href="hengeyokay.html"
+                                    class="block px-4 py-2 hover:bg-gray-700 rounded">Hengeyokay</a></li>
+                            <li><a href="erick.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Erick</a></li>
+                            <li><a href="masterkevin.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Master
+                                    Kevin</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </nav>
             <div class="md:hidden">
-                <button id="burger-menu" class="text-white focus:outline-none">
+                <button id="hamburger-menu" class="text-white focus:outline-none">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,100 +69,121 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm md:hidden hidden z-40">
-            <div id="mobile-menu-content"
-                class="absolute top-0 right-0 h-full w-3/4 max-w-sm bg-black p-6 shadow-xl transform translate-x-full">
-                <button class="absolute top-4 right-4 text-white"
-                    onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg>
-                </button>
-                <nav class="flex flex-col space-y-6 mt-16 text-xl">
-                    <a href="index.html" class="hover:text-gray-300">Home</a>
-                    <div>
-                        <a href="#" id="aventureros-mobile-toggle"
-                            class="hover:text-gray-300 flex justify-between items-center">Aventureros <span
-                                class="text-xs">▾</span></a>
-                        <div id="aventureros-mobile-submenu" class="ml-4 mt-2 space-y-2 hidden">
-                            <a href="romulo.html" class="block hover:text-gray-300">Rómulo</a>
-                            <a href="rhananhta.html" class="block hover:text-gray-300">Rhaan’Anhta</a>
-                        </div>
-                    </div>
-                    <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
-                </nav>
-            </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black">
+            <ul class="flex flex-col items-center py-4 space-y-4">
+                <li><a href="index.html" class="hover:text-gray-400 transition-colors">Home</a></li>
+                <li class="text-center">
+                    <span class="font-semibold mb-2 block">Aventureros</span>
+                    <ul class="space-y-2">
+                        <li><a href="romulo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rómulo</a></li>
+                        <li><a href="rhananhta.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rhaan’Anhta</a>
+                        </li>
+                        <li><a href="puhleedo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Puh lee do</a>
+                        </li>
+                        <li><a href="hengeyokay.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Hengeyokay</a>
+                        </li>
+                        <li><a href="erick.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Erick</a></li>
+                        <li><a href="masterkevin.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Master
+                                Kevin</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </header>
 
     <!-- Contenido de Master Kevin -->
-    <main class="container mx-auto px-4 py-8 md:py-12">
-        <h1 class="text-3xl md:text-5xl font-bold text-masterkevin-title text-center my-8">Master Kevin</h1>
+    <main class="container mx-auto py-12 px-4 font-noto-sans-gothic text-black text-xl">
+        <!-- Fuente Noto Sans Gothic, tamaño 20px -->
+        <h1 class="text-black text-4xl md:text-5xl font-bold text-center mb-10">Master Kevin</h1>
 
         <div class="flex flex-col md:flex-row-reverse gap-8 items-start">
             <!-- flex-row-reverse para video a la derecha -->
             <!-- Video a la Derecha -->
-            <div class="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 md:sticky md:top-28">
+            <div class="md:w-2/5 lg:w-1/3 w-full flex-shrink-0">
                 <video src="vdo/masterkevin.mp4" autoplay loop muted playsinline controls
-                    class="w-full rounded-lg shadow-xl aspect-[9/16] object-cover"></video>
+                    class="w-full rounded-lg shadow-lg"></video>
             </div>
 
             <!-- Texto a la Izquierda -->
-            <div class="w-full md:w-3/5 lg:w-2/3 font-noto-sans-gothic text-xl text-black text-justify space-y-4">
-                <p>Hay nombres que se susurran con reverencia, otros con temor. El nombre de Master Kevin se pronuncia
-                    con una mezcla de ambos, y quizás, con un toque de inevitabilidad. Si una frase pudiera encapsular
-                    su esencia, sería simplemente: "El todo poderoso". Esta no es una hipérbole vana, sino una
-                    descripción que muchos han llegado a aceptar como una verdad fundamental del cosmos que habitan.</p>
-                <p>Master Kevin no es un participante en las aventuras que se desarrollan; es el arquitecto. Sus
-                    designios son los hilos que tejen el tapiz del destino de los aventureros y, por extensión, del
-                    mundo mismo. Observa desde una perspectiva que trasciende el tiempo y el espacio, sus motivaciones
-                    tan insondables como las estrellas más lejanas.</p>
-                <p>No se le ve blandir una espada ni conjurar hechizos de la manera tradicional. Su poder es más sutil
-                    y, a la vez, más absoluto. Es la casualidad que no es casual, el encuentro fortuito que cambia el
-                    curso de la historia, la prueba que parece insuperable pero que guarda una lección vital. Su
-                    voluntad se manifiesta en los dados que ruedan, en las tormentas que surgen y en las alianzas que se
-                    forjan o se rompen.</p>
-                <p>Algunos lo ven como un titiritero divino, otros como una fuerza primordial del universo. ¿Es
-                    benévolo? ¿Malévolo? Tales conceptos mortales parecen inadecuados para describirlo. Master Kevin
-                    opera en una escala de grises que la mayoría no puede ni empezar a comprender. Su interés parece
-                    radicar en la historia misma, en el desarrollo del potencial, en el drama de la lucha y el triunfo.
-                </p>
-                <p>Los aventureros son sus piezas de ajedrez, pero también sus protagonistas. Los somete a pruebas, los
-                    guía por caminos inesperados, y observa con interés cómo crecen, cómo fallan y cómo, a veces,
-                    superan todas las expectativas. Su "juego" es la creación de leyendas.</p>
-                <p>Intentar comprender a Master Kevin es como intentar atrapar el viento. Solo se pueden ver sus
-                    efectos, las ondas que deja a su paso. Y para aquellos que caminan por los senderos que él ha
-                    trazado, solo queda una certeza: la aventura será, sin duda, épicamente emocionante.</p>
-                <p>Se dice que conoce cada posible futuro y cada pasado olvidado.</p>
-                <p>Su "voz" puede oírse en el crujido de una rama o en el susurro de una profecía antigua.</p>
-                <p>No interviene directamente, prefiriendo que los mortales encuentren sus propias soluciones, o
-                    fracasos.</p>
-                <p>Los objetos de gran poder a menudo aparecen "casualmente" cuando más se necesitan, o cuando menos se
-                    esperan.</p>
-                <p>Algunos eruditos creen que Master Kevin es la personificación del concepto de "narrativa" o
-                    "destino".</p>
-                <p>Su presencia se siente más como una atmósfera o una influencia que como un ser físico.</p>
-                <p>Se deleita en las ironías y en los giros argumentales inesperados.</p>
-                <p>Las reglas del mundo parecen doblarse a su voluntad, aunque raramente lo hace de forma obvia.</p>
-                <p>Los sueños de los aventureros a veces contienen mensajes crípticos o premoniciones, posiblemente de
-                    su influencia.</p>
-                <p>Se rumorea que tiene un "libro" donde todas las historias están escritas, o quizás, donde se escriben
-                    a medida que suceden.</p>
-                <p>No busca adoradores ni seguidores; su satisfacción proviene del desarrollo de la "gran historia".</p>
-                <p>Los desafíos que presenta están diseñados para probar el carácter y la voluntad, no solo la fuerza
-                    bruta.</p>
-                <p>A veces, un momento de pura suerte o una desgracia inesperada pueden ser su firma.</p>
-                <p>Porque al final, en el gran teatro del cosmos, Master Kevin es el director, el guionista y el
-                    espectador principal.</p>
+            <div class="md:w-3/5 lg:w-2/3 w-full text-justify leading-relaxed">
+                <p>En los anales de la creación, donde los mitos se entrelazan con la realidad y las leyendas cobran
+                    vida, existe una figura que trasciende la comprensión mortal: Master Kevin. Intentar describirlo con
+                    palabras es como intentar atrapar el viento con las manos o pintar el sonido del silencio. Es una
+                    tarea fútil, pues su esencia es inabarcable, su poder, ilimitado. La única frase que se acerca, que
+                    apenas roza la superficie de su ser, es aquella que resuena en los ecos del multiverso: ‘El todo
+                    poderoso’.</p>
+                <p class="mt-4">No es un dios en el sentido tradicional, pues los dioses mismos buscan su consejo o
+                    tiemblan ante su presencia. No es un mago, pues la magia es solo una herramienta que él podría haber
+                    inventado en un instante de ocio. Master Kevin es el arquitecto de realidades, el tejedor de
+                    destinos, el observador silencioso que, con un simple pensamiento, puede alterar el curso de la
+                    historia o crear nuevas galaxias.</p>
+                <p class="mt-4">Su apariencia es mutable, o quizás, no tiene una forma fija. A veces se manifiesta como
+                    una luz cegadora, otras como una sombra insondable, y en raras ocasiones, adopta una forma humanoide
+                    para interactuar con seres inferiores, aunque siempre con un aire de infinita paciencia y una
+                    sabiduría que abarca eones. Quienes han tenido el privilegio, o la desgracia, de encontrarse con él,
+                    describen una sensación abrumadora de insignificancia y, al mismo tiempo, de profunda conexión con
+                    el todo.</p>
+                <p class="mt-4">Se dice que fue Master Kevin quien susurró las primeras palabras de la creación, quien
+                    estableció las leyes fundamentales que rigen el cosmos. Cada estrella, cada planeta, cada ser vivo,
+                    es una nota en la sinfonía universal que él dirige. Pero no es un director intervencionista;
+                    prefiere observar el desarrollo de sus creaciones, maravillándose de la complejidad y la belleza que
+                    surge del caos aparente.</p>
+                <p class="mt-4">Los aventureros de esta historia, Rómulo, Rhaan’Anhta y los demás, son como diminutas
+                    chispas en la vasta hoguera de su existencia. Sin embargo, incluso la chispa más pequeña puede
+                    captar su atención si brilla con suficiente intensidad. Quizás esta "aventura épicamente
+                    emocionante" no sea más que un entretenimiento pasajero para él, un pequeño experimento en una de
+                    sus innumerables realidades. O tal vez, hay un propósito más profundo, un designio oculto que solo
+                    Master Kevin conoce. La verdad, como siempre, permanece velada, un misterio reservado para aquellos
+                    que se atrevan a buscar más allá de los límites de lo conocido. Su influencia es sutil pero
+                    omnipresente, un recordatorio constante de que hay fuerzas en el universo que escapan a nuestra más
+                    febril imaginación.</p>
+                <!-- ... (15 líneas más de texto para completar las 20) ... -->
+                <p class="mt-4">Los eruditos han dedicado vidas enteras a estudiar los fragmentos de conocimiento que se
+                    le atribuyen, encontrando siempre más preguntas que respuestas.</p>
+                <p class="mt-4">Se rumorea que los mismos conceptos de tiempo y espacio son meros constructos que él
+                    puede moldear a voluntad, como si fueran arcilla en sus manos.</p>
+                <p class="mt-4">Algunas filosofías sostienen que el universo entero es un sueño de Master Kevin, y que
+                    despertaríamos solo si él lo hiciera.</p>
+                <p class="mt-4">No busca adoración ni reconocimiento; su existencia es un fin en sí misma, más allá de
+                    las vanidades mortales o divinas.</p>
+                <p class="mt-4">Cuando interviene directamente, lo cual es extremadamente raro, las consecuencias
+                    reverberan a través de múltiples dimensiones y eras.</p>
+                <p class="mt-4">La energía que emana de él es tan vasta que podría alimentar soles o extinguirlos con
+                    igual facilidad.</p>
+                <p class="mt-4">Se dice que conoce cada pensamiento, cada acción y cada posible futuro de cada ser en la
+                    existencia, pero elige no interferir, salvo en circunstancias excepcionales.</p>
+                <p class="mt-4">Algunos lo ven como el árbitro final, el juez de todas las cosas, mientras que otros lo
+                    consideran la fuente primordial de toda creación.</p>
+                <p class="mt-4">No hay templos dedicados a Master Kevin, pues su templo es el universo mismo, y sus
+                    seguidores, todas las cosas que existen.</p>
+                <p class="mt-4">Su compasión es tan infinita como su poder, aunque a veces se manifieste de formas que
+                    los seres limitados no pueden comprender.</p>
+                <p class="mt-4">Ha presenciado el nacimiento y la muerte de incontables civilizaciones, cada una un
+                    breve parpadeo en la inmensidad de su perspectiva.</p>
+                <p class="mt-4">La búsqueda de entender a Master Kevin es, en esencia, la búsqueda de entender la
+                    naturaleza misma de la realidad.</p>
+                <p class="mt-4">A pesar de su omnipotencia, hay un dejo de melancolía en su ser, quizás la soledad
+                    inherente a ser único y todopoderoso.</p>
+                <p class="mt-4">Los objetos de gran poder o los artefactos legendarios a menudo no son más que
+                    fragmentos olvidados de su atención o herramientas desechadas.</p>
+                <p class="mt-4">En última instancia, Master Kevin es el enigma supremo, el narrador oculto de todas las
+                    historias, el poder detrás del telón, ‘El todo poderoso’.</p>
             </div>
         </div>
     </main>
 
-    <button id="toTopBtn"
-        class="fixed bottom-5 right-5 bg-gray-700 text-white p-3 rounded-full shadow-lg hidden hover:bg-gray-600 transition-colors z-30">↑</button>
-
+    <!-- Footer (Idéntico) -->
+    <footer id="footer"
+        class="bg-gray-900 text-red-500 text-lg text-center min-h-[90px] flex items-center justify-center mt-12">
+        <p>© derechos reservados Unit00 2025</p>
+    </footer>
+    <a href="#header" id="back-to-top"
+        class="fixed bottom-5 right-5 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors hidden z-50"
+        aria-label="Volver arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
     <script src="js/main.js"></script>
 </body>
 

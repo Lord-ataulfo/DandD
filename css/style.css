@@ -1,87 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Noto+Sans+Gothic&display=swap');
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&family=Noto+Sans+Gothic:wght@400;700&display=swap');
 
 body {
-    font-family: 'Arial', sans-serif;
-    /* Fuente base por si acaso */
+    font-family: sans-serif;
+    /* Fuente base por defecto */
 }
 
-/* Fuente Ephesis */
-.font-ephesis {
-    font-family: 'Ephesis', cursive;
+/* Estilo para el dropdown del menú para asegurar el retraso y la animación */
+.dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    /* El retraso de visibilidad es clave */
 }
 
-/* Fuente Noto Sans Gothic */
-.font-noto-sans-gothic {
-    font-family: 'Noto Sans Gothic', sans-serif;
+.group:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.5s;
+    /* Retraso de .5 segundos al mostrar */
+    transition-property: opacity, visibility;
+    transition-duration: 0.3s, 0s;
+    /* Duración de opacidad, visibilidad inmediata al quitar hover (después del delay de ocultar) */
 }
 
-/* Animación para Hero Text */
-@keyframes fadeInText {
-    from {
-        opacity: 0;
-    }
+/* Animación de aparición letra por letra (controlada por JS) - Mantenlo si lo usas en otro lado */
+.typing-effect>span {
+    opacity: 0;
+    animation: fadeInChar 0.1s forwards;
+}
 
+@keyframes fadeInChar {
     to {
         opacity: 1;
     }
 }
 
-.animate-fadeInText {
-    animation: fadeInText 1.5s ease-out forwards;
-}
-
-.animate-fadeInText-delayed {
-    animation: fadeInText 1.5s ease-out 0.2s forwards;
-    /* 0.2s de retraso */
-}
-
-/* Para el texto de Bienvenida (se controlará con JS) */
-#welcome-text span {
+/* Animación para las líneas de Bienvenida */
+.welcome-line {
     opacity: 0;
-    transition: opacity 0.1s ease-in-out;
+    /* Inicialmente oculto */
+    transform: translateY(20px);
+    /* Opcional: para un pequeño efecto de subida */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-#welcome-text span.visible {
+.welcome-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Para las tarjetas de aventureros y su animación de hover */
+
+/* Para las tarjetas de aventureros y su animación de hover */
+.character-card {
+    transition: transform 0.3s ease-in-out;
+    /* Transición más rápida para el escalado */
+    /* El transform-origin por defecto es 'center center', lo cual está bien para escalar */
+}
+
+.character-card:hover {
+    transform: scale(1.15);
+    /* Aumenta el tamaño al 115% (15% más grande) */
+    /* Ya no se aplica el rotate(360deg) */
+}
+
+/* No es necesario un estado específico para cuando se quita el hover,
+   la transición definida en .character-card se encargará de revertir
+   el 'transform: scale(1.15)' a 'transform: scale(1)' (o el estado inicial)
+   con la misma duración y timing function. */
+
+/* Estilos adicionales para los botones de navegación de Swiper si es necesario (opcional) */
+/* Swiper ya les da estilos básicos, pero puedes sobreescribirlos */
+/*
+.character-swiper-button-prev,
+.character-swiper-button-next {
+    color: #791B4D; // Usa tu color de tarjeta si los SVG no toman el text-custom-card-title
+}
+
+.swiper-button-disabled { // Cuando la flecha está deshabilitada (si loop:false)
+    opacity: 0.35;
+    cursor: auto;
+    pointer-events: none;
+}
+*/
+
+/* Cuando se quita el hover, debe regresar al tamaño original pero no girar */
+/* Esto se maneja con la transición definida en .character-card.
+   Al quitar el hover, la 'transform' vuelve a su estado 'none' o 'scale(1) rotate(0deg)'
+   con la misma duración y timing function, lo que significa que no re-girará. */
+
+
+/* Para el carrusel de héroes (si se usa JS para clases) */
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    opacity: 0;
+    /* Inicialmente ocultas */
+}
+
+.hero-slide.active {
+    transform: translateX(0%);
+    opacity: 1;
+    z-index: 1;
+}
+
+.hero-slide.next {
+    transform: translateX(100%);
+    /* Entra desde la derecha */
+    opacity: 1;
+    /* Asegurar que sea visible durante la transición */
+}
+
+.hero-slide.prev {
+    transform: translateX(-100%);
+    /* Sale hacia la izquierda */
+    opacity: 1;
+    /* Asegurar que sea visible durante la transición */
+}
+
+/* Para el texto del Hero con animación vía Intersection Observer */
+.hero-text-animate {
+    opacity: 0;
+    transition: opacity 1.5s ease-out;
+}
+
+.hero-text-animate.visible {
     opacity: 1;
 }
-
-/* Estilo para borde de texto (usado en títulos de páginas de personaje) */
-.text-stroke-black {
-    -webkit-text-stroke: 1px black;
-    paint-order: stroke fill;
-    /* Para que el borde no tape el relleno */
-}
-
-.text-stroke-white {
-    -webkit-text-stroke: 1px white;
-    paint-order: stroke fill;
-}
-
-
-/* Para truncar texto en tarjetas de personajes */
-.line-clamp-custom {
-    display: -webkit-box;
-
-    /* Ajusta este número según el espacio y tamaño de fuente */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Carrusel Hero: Estilos básicos para las imágenes */
-#hero-carousel .carousel-item {
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-}
-
-/* Estilos para el menú hamburguesa */
-#mobile-menu {
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Comentario sobre el tamaño de imágenes de las tarjetas:
-   Si la tarjeta tiene un ancho fijo (ej. 300px) y la sección de imagen tiene una altura fija (ej. 200px),
-   la imagen debería ser al menos de 300px de ancho y 200px de alto para que `object-cover` funcione bien
-   sin pixelarse demasiado. Idealmente, proporciona imágenes con una relación de aspecto que se ajuste
-   al contenedor o imágenes más grandes que el contenedor. Por ejemplo, si el espacio es 300x200,
-   una imagen de 600x400px sería excelente.
-*/

@@ -1,186 +1,179 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Menú Hamburguesa ---
-    const burgerButton = document.getElementById('burger-menu');
+    // Menú Hamburguesa
+    const hamburgerButton = document.getElementById('hamburger-menu');
     const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuContent = document.getElementById('mobile-menu-content');
-    const aventurerosMobileToggle = document.getElementById('aventureros-mobile-toggle');
-    const aventurerosMobileSubmenu = document.getElementById('aventureros-mobile-submenu');
-
-    if (burgerButton && mobileMenu) {
-        burgerButton.addEventListener('click', () => {
+    if (hamburgerButton && mobileMenu) {
+        hamburgerButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            // Evitar scroll del body cuando el menú está abierto
-            if (!mobileMenu.classList.contains('hidden')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-                // Asegurarse que el submenú también se oculte al cerrar el menú principal
-                if (aventurerosMobileSubmenu && !aventurerosMobileSubmenu.classList.contains('hidden')) {
-                    aventurerosMobileSubmenu.classList.add('hidden');
-                }
-            }
         });
     }
 
-    if (aventurerosMobileToggle && aventurerosMobileSubmenu) {
-        aventurerosMobileToggle.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevenir navegación si es un enlace
-            aventurerosMobileSubmenu.classList.toggle('hidden');
-        });
-    }
-
-    // Cerrar menú si se hace clic fuera de él (en el overlay)
-    if (mobileMenu && mobileMenuContent) {
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target === mobileMenu) { // Si el clic es en el overlay y no en el contenido
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-                if (aventurerosMobileSubmenu && !aventurerosMobileSubmenu.classList.contains('hidden')) {
-                    aventurerosMobileSubmenu.classList.add('hidden');
-                }
-            }
-        });
-    }
-
-
-    // --- Carrusel Hero ---
+    // Carrusel Hero
     const heroCarousel = document.getElementById('hero-carousel');
     if (heroCarousel) {
-        const items = heroCarousel.querySelectorAll('.carousel-item');
-        let currentIndex = 0;
-        const totalItems = items.length;
-        const intervalTime = 4000; // 4 segundos
+        const slides = heroCarousel.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+        const slideInterval = 4000; // 4 segundos
 
-        function showItem(index) {
-            items.forEach((item, i) => {
-                item.classList.add('absolute', 'opacity-0'); // Asegurar que todos estén absolutos y ocultos
-                item.style.transform = 'translateX(100%)'; // Posición inicial para entrar
-                if (i === index) { // Item actual
-                    item.classList.remove('opacity-0');
-                    item.style.transform = 'translateX(0%)';
-                } else if (i === (index - 1 + totalItems) % totalItems) { // Item anterior
-                    item.classList.remove('opacity-0'); // Mantener visible para la transición de salida
-                    item.style.transform = 'translateX(-100%)';
-                }
-            });
-        }
-
-        function nextItem() {
-            const prevIndex = currentIndex;
-            currentIndex = (currentIndex + 1) % totalItems;
-
-            // Mover el actual a la izquierda (para el efecto de empujar)
-            items[prevIndex].style.transform = 'translateX(-100%)';
-            items[prevIndex].classList.add('opacity-0'); // Puede ser opcional dependiendo del efecto deseado
-
-            // Traer el nuevo desde la derecha
-            items[currentIndex].style.transform = 'translateX(100%)'; // Resetear posición antes de la animación
-            requestAnimationFrame(() => { // Asegurar que el reset se aplique antes de la animación
-                items[currentIndex].classList.remove('opacity-0');
-                items[currentIndex].style.transform = 'translateX(0%)';
-            });
-        }
-
-        if (totalItems > 0) {
-            // Inicializar: el primero visible, los demás a la derecha
-            items.forEach((item, i) => {
-                item.classList.add('absolute', 'inset-0', 'w-full', 'h-full', 'object-cover');
-                if (i === 0) {
-                    item.classList.remove('opacity-0');
-                    item.style.transform = 'translateX(0%)';
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'prev', 'next');
+                if (i === index) {
+                    slide.classList.add('active');
+                } else if (i === (index - 1 + slides.length) % slides.length) {
+                    // Esta es la diapositiva anterior que se está "empujando"
+                    slide.classList.add('prev');
                 } else {
-                    item.classList.add('opacity-0');
-                    item.style.transform = 'translateX(100%)';
+                    // Prepara la siguiente para entrar
+                    if ((index + 1) % slides.length === i) {
+                        slide.classList.add('next');
+                    }
                 }
             });
-            setInterval(nextItem, intervalTime);
+        }
+
+        function nextSlide() {
+            const prevIndex = currentSlide;
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            slides[prevIndex].classList.remove('active');
+            slides[prevIndex].classList.add('prev'); // La activa se convierte en prev para el efecto empuje
+
+            slides[currentSlide].classList.remove('next', 'prev'); // Limpiar por si acaso
+            slides[currentSlide].classList.add('active');
+
+            // Pre-cargar la siguiente para que esté lista para la transición 'next'
+            const nextIndexForPreload = (currentSlide + 1) % slides.length;
+            slides[nextIndexForPreload].classList.remove('active', 'prev');
+            slides[nextIndexForPreload].classList.add('next');
+
+        }
+
+        if (slides.length > 0) {
+            slides[currentSlide].classList.add('active');
+            if (slides.length > 1) {
+                slides[(currentSlide + 1) % slides.length].classList.add('next'); // Prepara la siguiente
+                setInterval(nextSlide, slideInterval);
+            }
         }
     }
 
-    // --- Animación Texto Hero con Intersection Observer ---
-    const heroText1 = document.getElementById('hero-text-1');
-    const heroText2 = document.getElementById('hero-text-2');
-
-    const heroObserverCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.remove('opacity-0');
-                if (entry.target.id === 'hero-text-1') {
-                    entry.target.classList.add('animate-fadeInText');
-                } else if (entry.target.id === 'hero-text-2') {
-                    entry.target.classList.add('animate-fadeInText-delayed');
-                }
-            } else {
-                // Reset para que la animación ocurra cada vez
-                entry.target.classList.add('opacity-0');
-                entry.target.classList.remove('animate-fadeInText', 'animate-fadeInText-delayed');
-            }
-        });
-    };
-    const heroObserverOptions = { threshold: 0.5 }; // Animar cuando el 50% es visible
-    const heroObserver = new IntersectionObserver(heroObserverCallback, heroObserverOptions);
-
-    if (heroText1) heroObserver.observe(heroText1);
-    if (heroText2) heroObserver.observe(heroText2);
-
-    // --- Animación Texto Bienvenida (Letra por Letra) ---
-    const welcomeTextElement = document.getElementById('welcome-text');
-    if (welcomeTextElement) {
-        const originalText = "Bienvenidos a esta aventura, Creada por mí Master Kevin, Brindemos por nuestros aventureros, esperando lleguen al final";
-        welcomeTextElement.innerHTML = ''; // Limpiar
-        originalText.split('').forEach(char => {
-            const span = document.createElement('span');
-            span.textContent = char === ' ' ? '\u00A0' : char; // Usar non-breaking space para espacios
-            welcomeTextElement.appendChild(span);
-        });
-
-        const spans = welcomeTextElement.querySelectorAll('span');
-        let charIndex = 0;
-        let animationInterval;
-
-        const typeLetter = () => {
-            if (charIndex < spans.length) {
-                spans[charIndex].classList.add('visible');
-                charIndex++;
-            } else {
-                clearInterval(animationInterval);
-            }
-        };
-
-        const welcomeObserverCallback = (entries, observer) => {
+    // Animación de texto en Hero con Intersection Observer
+    const heroTexts = document.querySelectorAll('.hero-text-animate');
+    if (heroTexts.length > 0) {
+        const heroObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (charIndex < spans.length) { // Solo iniciar si no ha terminado
-                        // Resetear animación si se quiere que se repita al volver a ver
-                        charIndex = 0;
-                        spans.forEach(s => s.classList.remove('visible'));
-                        animationInterval = setInterval(typeLetter, 50); // Ajusta la velocidad (milisegundos)
-                    }
-                    // observer.unobserve(entry.target); // Descomentar si solo se anima una vez
+                    entry.target.classList.add('visible');
+                    // Opcional: dejar de observar una vez animado para no repetir
+                    // heroObserver.unobserve(entry.target); 
                 } else {
-                    // Opcional: resetear si sale de la vista para reanimar al volver
-                    clearInterval(animationInterval);
-                    // charIndex = 0; 
-                    // spans.forEach(s => s.classList.remove('visible'));
+                    entry.target.classList.remove('visible'); // Para que se repita cada vez
                 }
             });
-        };
-        const welcomeObserver = new IntersectionObserver(welcomeObserverCallback, { threshold: 0.5 });
-        welcomeObserver.observe(welcomeTextElement);
+        }, { threshold: 0.5 }); // Se activa cuando el 50% del elemento es visible
+
+        heroTexts.forEach(text => heroObserver.observe(text));
     }
 
 
-    // --- Botón "Volver Arriba" ---
-    const toTopBtn = document.getElementById('toTopBtn');
-    if (toTopBtn) {
-        window.onscroll = function () {
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                toTopBtn.classList.remove('hidden');
-            } else {
-                toTopBtn.classList.add('hidden');
-            }
+    // Animación de texto "Bienvenida" letra por letra
+    const welcomeLinesContainer = document.getElementById('welcome-text-container');
+    if (welcomeLinesContainer) {
+        const lines = welcomeLinesContainer.querySelectorAll('.welcome-line');
+        let animationHasRun = false; // Para controlar que la animación se ejecute solo una vez si es necesario
+
+        const animateWelcomeLines = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animationHasRun) {
+                    lines.forEach((line, index) => {
+                        // Usamos el data-delay para el tiempo de la animación,
+                        // o un simple setTimeout incremental.
+                        // El data-delay del HTML es más para el orden,
+                        // el delay real lo manejaremos aquí.
+                        setTimeout(() => {
+                            line.classList.add('visible');
+                        }, index * 700); // 700ms de retraso entre cada línea, ajústalo
+                    });
+                    animationHasRun = true; // Marcar que la animación ya se ejecutó
+                    observer.unobserve(entry.target); // Dejar de observar una vez animado
+                }
+                // Si quieres que se repita cada vez que entra en pantalla:
+                // else if (!entry.isIntersecting && animationHasRun) {
+                //     lines.forEach(line => line.classList.remove('visible'));
+                //     animationHasRun = false; // Permitir que se ejecute de nuevo
+                //     observer.observe(welcomeLinesContainer); // Volver a observar si se quitó
+                // }
+            });
         };
-        toTopBtn.addEventListener('click', () => {
+
+        const welcomeObserver = new IntersectionObserver(animateWelcomeLines, {
+            threshold: 0.3, // Se activa cuando el 30% del contenedor es visible
+            // rootMargin: "-100px 0px -100px 0px" // Ajustar si es necesario para que se active antes/después
+        });
+
+        welcomeObserver.observe(welcomeLinesContainer);
+    }
+
+    // Carrusel de Tarjetas de Personajes (usando Swiper.js - RECOMENDADO)
+    // Si decides no usar Swiper, necesitarás una implementación manual más compleja
+    // o un scroll horizontal simple.
+    // Para Swiper:
+    // 1. Añade el CDN de Swiper.js en tu HTML:
+    //    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    //    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    // 2. Descomenta y usa el siguiente código:
+
+    if (typeof Swiper !== 'undefined') {
+        const characterSwiper = new Swiper('.character-swiper-container', {
+            loop: true, // Lo pongo en true para que el carrusel sea infinito con 3 tarjetas
+            slidesPerView: 1, // Por defecto para móviles pequeños
+            spaceBetween: 20, // Espacio reducido entre tarjetas para móviles
+            grabCursor: true,
+            // centeredSlides: true, // Quitado para que la primera tarjeta esté a la izquierda por defecto
+
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.character-swiper-button-next', // Usando las clases personalizadas
+                prevEl: '.character-swiper-button-prev', // Usando las clases personalizadas
+            },
+            breakpoints: {
+                // Cuando el ancho de la ventana es >= 640px (sm)
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                // Cuando el ancho de la ventana es >= 1024px (lg)
+                1024: {
+                    slidesPerView: 3, // Mostrar 3 tarjetas
+                    spaceBetween: 40, // Espacio entre tarjetas (puedes ajustarlo más, ej: 30px o 50px)
+                },
+                // Podrías añadir un breakpoint intermedio si quieres
+                // 768: { // md
+                //     slidesPerView: 2,
+                //     spaceBetween: 30,
+                // },
+            }
+        });
+    } else {
+        console.warn('Swiper.js no está cargado. El carrusel de personajes no funcionará como carrusel avanzado.');
+    }
+
+    // Botón "Volver Arriba"
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) { // Muestra el botón después de 300px de scroll
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }

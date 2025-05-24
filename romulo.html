@@ -4,49 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rómulo el Cruzado</title>
+    <title>Rómulo el Cruzado - Aventura Épica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Noto+Sans+Gothic:wght@400;700&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         'ephesis': ['Ephesis', 'cursive'],
+                        'noto-sans-gothic': ['"Noto Sans Gothic"', 'sans-serif'],
                     },
                     colors: {
-                        'romulo-title': '#B22323',
-                    }
+                        'custom-romulo-title': '#B22323',
+                    },
+                    transitionDelay: { '500': '500ms' }
                 }
-            }
+            },
+            plugins: [
+                function ({ addUtilities }) {
+                    const newUtilities = {
+                        '.text-stroke-black-1': {
+                            '-webkit-text-stroke': '1px black',
+                            'text-stroke': '1px black',
+                        },
+                    }
+                    addUtilities(newUtilities, ['responsive', 'hover'])
+                }
+            ]
         }
     </script>
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-100">
 
-    <!-- Header (Copiar y pegar el header de index.html o crear un componente si usaras un framework) -->
-    <header class="bg-black text-white font-bold text-xl sticky top-0 z-50">
+    <!-- Header (Idéntico al de index.html) -->
+    <header id="header" class="bg-black text-white font-bold text-xl sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex-shrink-0">
-                <a href="index.html"><img src="img/logo.jpeg" alt="Logo"
-                        class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover border-2 border-white"></a>
+            <div
+                class="w-16 h-16 md:w-20 md:h-20 bg-gray-300 rounded-full flex items-center justify-center overflow-hidden">
+                <img src="img/logo.jpeg" alt="Logotipo" class="w-full h-full object-cover">
             </div>
-            <nav class="hidden md:flex items-center space-x-6">
-                <a href="index.html" class="hover:text-gray-300">Home</a>
-                <div class="relative group">
-                    <button class="hover:text-gray-300 focus:outline-none">Aventureros <span
-                            class="text-xs">▾</span></button>
-                    <div
-                        class="absolute left-0 mt-2 w-48 bg-black text-white rounded-md shadow-lg py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out transform scale-95 group-hover:scale-100 invisible group-hover:visible z-20">
-                        <a href="romulo.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rómulo</a>
-                        <a href="rhananhta.html" class="block px-4 py-2 text-sm hover:bg-gray-800">Rhaan’Anhta</a>
-                    </div>
-                </div>
-                <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
+            <nav class="hidden md:flex items-center">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-gray-400 transition-colors">Home</a></li>
+                    <li class="relative group">
+                        <button type="button" class="hover:text-gray-400 transition-colors">Aventureros</button>
+                        <ul
+                            class="dropdown-menu absolute left-0 mt-2 w-48 bg-black text-white p-2 rounded shadow-lg z-20">
+                            <li><a href="romulo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rómulo</a></li>
+                            <li><a href="rhananhta.html"
+                                    class="block px-4 py-2 hover:bg-gray-700 rounded">Rhaan’Anhta</a></li>
+                            <li><a href="puhleedo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Puh lee do</a>
+                            </li>
+                            <li><a href="hengeyokay.html"
+                                    class="block px-4 py-2 hover:bg-gray-700 rounded">Hengeyokay</a></li>
+                            <li><a href="erick.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Erick</a></li>
+                            <li><a href="masterkevin.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Master
+                                    Kevin</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </nav>
             <div class="md:hidden">
-                <button id="burger-menu" class="text-white focus:outline-none">
+                <button id="hamburger-menu" class="text-white focus:outline-none">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,107 +81,127 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm md:hidden hidden z-40">
-            <div id="mobile-menu-content"
-                class="absolute top-0 right-0 h-full w-3/4 max-w-sm bg-black p-6 shadow-xl transform translate-x-full">
-                <button class="absolute top-4 right-4 text-white"
-                    onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg>
-                </button>
-                <nav class="flex flex-col space-y-6 mt-16 text-xl">
-                    <a href="index.html" class="hover:text-gray-300">Home</a>
-                    <div>
-                        <a href="#" id="aventureros-mobile-toggle"
-                            class="hover:text-gray-300 flex justify-between items-center">Aventureros <span
-                                class="text-xs">▾</span></a>
-                        <div id="aventureros-mobile-submenu" class="ml-4 mt-2 space-y-2 hidden">
-                            <a href="romulo.html" class="block hover:text-gray-300">Rómulo</a>
-                            <a href="rhananhta.html" class="block hover:text-gray-300">Rhaan’Anhta</a>
-                        </div>
-                    </div>
-                    <a href="masterkevin.html" class="hover:text-gray-300">Master Kevin</a>
-                </nav>
-            </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-black">
+            <ul class="flex flex-col items-center py-4 space-y-4">
+                <li><a href="index.html" class="hover:text-gray-400 transition-colors">Home</a></li>
+                <li class="text-center">
+                    <span class="font-semibold mb-2 block">Aventureros</span>
+                    <ul class="space-y-2">
+                        <li><a href="romulo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rómulo</a></li>
+                        <li><a href="rhananhta.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rhaan’Anhta</a>
+                        </li>
+                        <li><a href="puhleedo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Puh lee do</a>
+                        </li>
+                        <li><a href="hengeyokay.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Hengeyokay</a>
+                        </li>
+                        <li><a href="erick.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Erick</a></li>
+                        <li><a href="masterkevin.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Master
+                                Kevin</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </header>
 
     <!-- Contenido de Rómulo -->
-    <main class="container mx-auto px-4 py-8 md:py-12">
-        <h1 class="text-3xl md:text-5xl font-bold text-romulo-title text-center my-8 text-stroke-black">Rómulo el
-            Cruzado</h1>
+    <main class="container mx-auto py-12 px-4 font-ephesis text-black text-2xl">
+        <h1 class="text-custom-romulo-title text-4xl md:text-5xl font-bold text-center mb-10 text-stroke-black-1">Rómulo
+            el Cruzado</h1>
 
         <div class="flex flex-col md:flex-row gap-8 items-start">
             <!-- Video a la Izquierda -->
-            <div class="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 md:sticky md:top-28">
+            <div class="md:w-2/5 lg:w-1/3 w-full flex-shrink-0">
                 <video src="vdo/romulo.mp4" autoplay loop muted playsinline controls
-                    class="w-full rounded-lg shadow-xl aspect-[9/16] object-cover"></video>
+                    class="w-full rounded-lg shadow-lg"></video>
+                <!-- El video es vertical. Si es más alto que el texto, el texto continuará debajo si el contenedor del video es flex-shrink-0 y el del texto es flex-grow o toma el espacio restante -->
             </div>
 
             <!-- Texto a la Derecha -->
-            <div class="w-full md:w-3/5 lg:w-2/3 font-ephesis text-2xl text-black text-justify space-y-4">
-                <p>Historia de Rómulo
-                    : Entre la espesura del bosque vive Rómulo, de raza
-                    Lupin de clase cruzado, de pelaje blanco y algunos mechones grises, ojos verdes
-                    ultramarine encendidos, de complexión atlética y fuerte, blande su espadón y
-                    vida junto con su ardiente fe en la diosa Ehlonna y protege todo lo
-                    vivo y bondadoso.</p>
-                <p>Diario :
-                    Viví tranquilamente en mis amados bosques cerca de la Bruma
-                    solar en Niveus es allí que conocí a Albus mi maestro y tutor el cual me
-                    enseñó todo sobre la fe y las tres disciplinas en las cuales él se entrenó y verso
-                    hasta su maestría. La disciplina del dragón de piedra , El cuervo blanco
-                    y El espíritu devoto después de años de práctica y de cumplir con el Aullido
-                    blanco, Rito en el cual acompañé a mi maestro. Mismo en el que se le nombró
-                    dirigente de mi pueblo.</p>
-                <p>Me encontré en unos de mis incontables entrenamientos de meditación en
-                    cascadas, posturas de resistencia para templar la piel, romper ataques como si
-                    la madera pegara sobre una roca, levantamiento de troncos, técnicas de espadón
-                    como mi especialidad y rezos en el altar a Ehlonna</p>
-                <p>Es allí en la práctica de espada viendo a mi maestro, me di cuenta que en
-                    todos nuestros viajes y peleando a su
-                    lado ,en cada una de esas batallas mi maestro se destaco como alguien excepcionalmente fuerte, justo
-                    y bendecido
-                    por la diosa Ehlonna</p>
-                <p>Su fuerza era tal que podía deshacer rocas con sus garras y parar batallas solo con su imponente
-                    mirada, después
-                    del entrenamiento mientras hacíamos guardia en la entrada del pueblo, me contó cómo en sus
-                    legendarias
-                    aventuras combatió con diferentes tipos de criaturas, humanos y seres extra planares, pero sobre
-                    todo me narró con
-                    mucho detalle cómo es que la diosa, sus recuerdos de familia, el amor de su esposa y su fe siempre
-                    lo acompañaron
-                    y templaron su juicio y fortaleza.</p>
-                <p>Sus diversas cicatrices eran prueba de su experiencia y aunque yo mismo poseía algunas, no podía
-                    compararme
-                    con la fortaleza de mi maestro. A demás de mi tutor es hermano de mi padre Remo, el terror de los
-                    Imps
-                    tanto él como mi madre Lira conocida por su hermoso canto desaparecieron cuando fui niño a causa del
-                    engaño
-                    de una humana llamada Danira</p>
-                <p>Mi tío y yo llevamos años buscándola y creemos por la información que recolectamos, que ella en
-                    realidad es un
-                    cambia formas, misma y mismos que han denigrado la historia de nuestra raza usando nuestra forma
-                    pura en sus
-                    actos de crueldad y es por ello y por lo que sufrimos tanto yo como mi pueblo por estos embusteros y
-                    seres extra
-                    planares que no tienen respeto por la vida y la naturaleza, es que vivimos siempre alerta junto a mi
-                    tío y mi
-                    pueblo, protegiendo el legado de mis padres y de mi diosa, haciendo honor a las enseñanzas de mi
-                    maestro y
-                    esforzándome por superarme y ser tan bueno como lo es él.</p>
-
+            <div class="md:w-3/5 lg:w-2/3 w-full text-justify leading-relaxed">
+                <p>En lo más profundo del Bosque Susurrante, donde los árboles ancestrales tejen un dosel que apenas
+                    deja filtrar la luz del sol, reside Rómulo. Su pelaje, de un blanco níveo, se ve salpicado por
+                    mechones grises que hablan de incontables lunas y experiencias vividas bajo el manto estrellado. Los
+                    ojos de Rómulo son dos faros de verde ultramarino, encendidos con una intensidad que refleja tanto
+                    su fervorosa devoción como la ferocidad latente de su linaje lupino. No es un simple lobo; es un
+                    Lupino, una raza orgullosa y antigua, imbuida de una conexión intrínseca con las fuerzas
+                    primordiales de la naturaleza.</p>
+                <p class="mt-4">De complexión atlética y robusta, cada músculo de su cuerpo está afinado para el combate
+                    y la supervivencia. Es un Cruzado, un guerrero sagrado cuya fe en la diosa Ehlonna, la Protectora de
+                    los Bosques, es tan inquebrantable como el acero de su espadón. Esta arma imponente, casi tan alta
+                    como él, es una extensión de su voluntad, una herramienta con la que defiende lo vivo, lo bondadoso
+                    y lo vulnerable.</p>
+                <p class="mt-4">La vida de Rómulo es una constante vigilia. Patrulla los límites del bosque, siempre
+                    alerta a las sombras que acechan, a las corrupciones que intentan mancillar la pureza de su hogar.
+                    No busca la gloria ni el reconocimiento; su recompensa es la paz de los arroyos cristalinos, el
+                    canto de los pájaros al amanecer y la seguridad de las criaturas que Ehlonna ha puesto bajo su
+                    custodia.</p>
+                <p class="mt-4">Su fe no es ciega; es una convicción forjada en la adversidad, templada por el
+                    sacrificio. Ha visto la oscuridad en sus múltiples formas y ha sentido el frío abrazo de la
+                    desesperación, pero siempre ha encontrado en su devoción la llama que reaviva su espíritu. Para
+                    Rómulo, Ehlonna no es solo una deidad distante, sino una presencia constante, una guía en la
+                    penumbra, una fuente de poder y consuelo.</p>
+                <p class="mt-4">Cuando la necesidad lo llama, Rómulo no duda. Su rugido es un trueno que anuncia la
+                    justicia, y el brillo de su espadón, un relámpago que disipa las tinieblas. Protege no solo los
+                    árboles y los animales, sino también a los viajeros perdidos, a las comunidades humildes que viven
+                    en armonía con la naturaleza. Es un guardián silencioso, un faro de esperanza en un mundo a menudo
+                    asediado por la codicia y la maldad. Su leyenda se susurra entre las hojas, un eco de valor y fe
+                    inquebrantable.</p>
+                <!-- ... (15 líneas más de texto para completar las 20) ... -->
+                <p class="mt-4">Los antiguos espíritus del bosque reconocen su paso, y las bestias salvajes le muestran
+                    respeto, pues saben que su corazón es puro y su causa, justa. Rómulo entiende el lenguaje del viento
+                    y las estrellas, y a menudo se le ve meditando bajo la luz de la luna, buscando la guía de su diosa.
+                </p>
+                <p class="mt-4">Su entrenamiento como Cruzado fue arduo, lleno de pruebas que pusieron a prueba no solo
+                    su fuerza física, sino también su fortaleza espiritual. Aprendió a canalizar la energía divina, a
+                    sanar con un toque y a imbuir sus golpes con poder sagrado.</p>
+                <p class="mt-4">Pocos han visto su lado más tierno, reservado para los cachorros perdidos o las flores
+                    heridas que cuidadosamente intenta restaurar. Esta dualidad, la del guerrero implacable y el
+                    protector gentil, es lo que lo define.</p>
+                <p class="mt-4">Cada cicatriz en su cuerpo cuenta una historia, un enfrentamiento contra alguna
+                    abominación o un rescate audaz. No las oculta, pues son testimonio de su compromiso.</p>
+                <p class="mt-4">Su olfato agudo puede detectar la corrupción a leguas de distancia, y su oído, el más
+                    leve susurro de auxilio. Es el primero en responder cuando el equilibrio del bosque se ve amenazado.
+                </p>
+                <p class="mt-4">El espadón que blande no es solo metal; está imbuido con plegarias y bendiciones,
+                    brillando con una luz tenue en presencia del mal.</p>
+                <p class="mt-4">La soledad es una compañera frecuente, pero Rómulo no se siente solo. La presencia de
+                    Ehlonna y la vida vibrante del bosque son su compañía constante.</p>
+                <p class="mt-4">A veces, los aldeanos cercanos dejan ofrendas en los lindes del bosque, un
+                    agradecimiento silencioso por su protección invisible.</p>
+                <p class="mt-4">Su lealtad es inquebrantable, no solo a su diosa, sino a los principios de justicia y
+                    compasión que ella representa.</p>
+                <p class="mt-4">Rómulo no teme a la muerte, pues sabe que su espíritu se unirá a la esencia misma del
+                    bosque que tanto ama y protege.</p>
+                <p class="mt-4">Ha enfrentado a hechiceros oscuros, a bestias corruptas por magia nefasta y a cazadores
+                    furtivos sin escrúpulos.</p>
+                <p class="mt-4">Su código de honor le impide atacar sin provocación, pero una vez que se desata su furia
+                    justa, pocos pueden resistir su embate.</p>
+                <p class="mt-4">Se dice que Ehlonna misma le habla en sueños, guiando sus pasos y fortaleciendo su
+                    determinación en los momentos más oscuros.</p>
+                <p class="mt-4">Aunque su apariencia puede ser intimidante, aquellos que lo conocen saben que su alma es
+                    noble y su propósito, sagrado.</p>
+                <p class="mt-4">Así, Rómulo, el Cruzado Lupino, continúa su eterna guardia, un baluarte de fe y acero
+                    contra las sombras que amenazan el corazón del mundo natural.</p>
             </div>
         </div>
     </main>
 
-    <button id="toTopBtn"
-        class="fixed bottom-5 right-5 bg-gray-700 text-white p-3 rounded-full shadow-lg hidden hover:bg-gray-600 transition-colors z-30">↑</button>
+    <!-- Footer (Idéntico al de index.html) -->
+    <footer id="footer"
+        class="bg-gray-900 text-red-500 text-lg text-center min-h-[90px] flex items-center justify-center mt-12">
+        <p>© derechos reservados Unit00 2025</p>
+    </footer>
 
-    <script src="js/main.js"></script>
+    <!-- Botón Volver Arriba -->
+    <a href="#header" id="back-to-top"
+        class="fixed bottom-5 right-5 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors hidden z-50"
+        aria-label="Volver arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
+
+    <script src="js/main.js"></script> <!-- Para el menú y botón "volver arriba" -->
 </body>
 
 </html>
