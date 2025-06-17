@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Noto+Sans+Gothic:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand:wght@400..700&display=swap"
         rel="stylesheet">
     <script>
         tailwind.config = {
@@ -41,7 +41,7 @@
 
 <body class="bg-gray-100">
 
-    <!-- Header (Idéntico) -->
+    <!-- Header -->
     <header id="header" class="bg-black text-white font-bold text-xl sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div
@@ -63,10 +63,12 @@
                             <li><a href="hengeyokay.html"
                                     class="block px-4 py-2 hover:bg-gray-700 rounded">Hengeyokay</a></li>
                             <li><a href="erick.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Erick</a></li>
-                            <li><a href="masterkevin.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Master
-                                    Kevin</a></li>
+                            <li><a href="eldora.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Eldora
+                                    Gritaestrella</a></li>
                         </ul>
                     </li>
+                    <li><a href="masterkevin.html" class="hover:text-gray-400 transition-colors">Master Kevin</a></li>
+                    <li><a href="cronicas.html" class="hover:text-gray-400 transition-colors">Crónicas</a></li>
                 </ul>
             </nav>
             <div class="md:hidden">
@@ -83,8 +85,9 @@
             <ul class="flex flex-col items-center py-4 space-y-4">
                 <li><a href="index.html" class="hover:text-gray-400 transition-colors">Home</a></li>
                 <li class="text-center">
-                    <span class="font-semibold mb-2 block">Aventureros</span>
-                    <ul class="space-y-2">
+                    <span class="font-semibold mb-2 block cursor-pointer" onclick="toggleMobileSubmenu()">Aventureros
+                        ▼</span>
+                    <ul id="mobile-submenu-aventureros" class="space-y-2 hidden mt-2">
                         <li><a href="romulo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rómulo</a></li>
                         <li><a href="rhananhta.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rhaan’Anhta</a>
                         </li>
@@ -93,10 +96,12 @@
                         <li><a href="hengeyokay.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Hengeyokay</a>
                         </li>
                         <li><a href="erick.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Erick</a></li>
-                        <li><a href="masterkevin.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Master
-                                Kevin</a></li>
+                        <li><a href="eldora.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Eldora
+                                Gritaestrella</a></li>
                     </ul>
                 </li>
+                <li><a href="masterkevin.html" class="hover:text-gray-400 transition-colors">Master Kevin</a></li>
+                <li><a href="cronicas.html" class="hover:text-gray-400 transition-colors">Crónicas</a></li>
             </ul>
         </div>
     </header>

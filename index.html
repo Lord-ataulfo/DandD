@@ -7,16 +7,12 @@
     <title>Aventura Épica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Noto+Sans+Gothic:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand:wght@400..700&display=swap"
         rel="stylesheet">
-    <!-- Swiper.js (para carrusel de personajes) -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script>
-        // Configuración de Tailwind para que coincida con tailwind.config.js
-        // (si usas solo CDN y no compilación)
         tailwind.config = {
             theme: {
                 extend: {
@@ -55,17 +51,12 @@
 
 <body class="bg-gray-100">
 
-    <!-- Header -->
     <header id="header" class="bg-black text-white font-bold text-xl sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Contenedor Izquierda (Logo) -->
             <div
                 class="w-16 h-16 md:w-20 md:h-20 bg-gray-300 rounded-full flex items-center justify-center overflow-hidden">
-                <!-- Reemplaza con tu imagen de logo -->
                 <img src="img/logo.jpeg" alt="Logotipo" class="w-full h-full object-cover">
             </div>
-
-            <!-- Contenedor Derecha (Menú Desktop) -->
             <nav class="hidden md:flex items-center">
                 <ul class="flex space-x-6">
                     <li><a href="index.html" class="hover:text-gray-400 transition-colors">Home</a></li>
@@ -81,14 +72,14 @@
                             <li><a href="hengeyokay.html"
                                     class="block px-4 py-2 hover:bg-gray-700 rounded">Hengeyokay</a></li>
                             <li><a href="erick.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Erick</a></li>
-                            <li><a href="masterkevin.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Master
-                                    Kevin</a></li>
+                            <li><a href="eldora.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Eldora
+                                    Gritaestrella</a></li>
                         </ul>
                     </li>
+                    <li><a href="masterkevin.html" class="hover:text-gray-400 transition-colors">Master Kevin</a></li>
+                    <li><a href="cronicas.html" class="hover:text-gray-400 transition-colors">Crónicas</a></li>
                 </ul>
             </nav>
-
-            <!-- Botón Hamburguesa (Móvil) -->
             <div class="md:hidden">
                 <button id="hamburger-menu" class="text-white focus:outline-none">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -99,13 +90,13 @@
                 </button>
             </div>
         </div>
-        <!-- Menú Móvil -->
         <div id="mobile-menu" class="hidden md:hidden bg-black">
             <ul class="flex flex-col items-center py-4 space-y-4">
                 <li><a href="index.html" class="hover:text-gray-400 transition-colors">Home</a></li>
                 <li class="text-center">
-                    <span class="font-semibold mb-2 block">Aventureros</span>
-                    <ul class="space-y-2">
+                    <span class="font-semibold mb-2 block cursor-pointer" onclick="toggleMobileSubmenu()">Aventureros
+                        ▼</span>
+                    <ul id="mobile-submenu-aventureros" class="space-y-2 hidden mt-2">
                         <li><a href="romulo.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rómulo</a></li>
                         <li><a href="rhananhta.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Rhaan’Anhta</a>
                         </li>
@@ -114,208 +105,170 @@
                         <li><a href="hengeyokay.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Hengeyokay</a>
                         </li>
                         <li><a href="erick.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Erick</a></li>
-                        <li><a href="masterkevin.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Master
-                                Kevin</a></li>
+                        <li><a href="eldora.html" class="block px-4 py-2 hover:bg-gray-700 rounded">Eldora
+                                Gritaestrella</a></li>
                     </ul>
                 </li>
+                <li><a href="masterkevin.html" class="hover:text-gray-400 transition-colors">Master Kevin</a></li>
+                <li><a href="cronicas.html" class="hover:text-gray-400 transition-colors">Crónicas</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section id="hero" class="h-95vh relative overflow-hidden bg-gray-800">
-        <!-- Contenedor del Carrusel -->
-        <div id="hero-carousel" class="absolute inset-0 w-full h-full">
-            <img src="img/carrusel-1.jpeg" alt="Paisaje épico 1" class="hero-slide">
-            <img src="img/carrusel-2.jpeg" alt="Paisaje épico 2" class="hero-slide">
-            <img src="img/carrusel-3.jpeg" alt="Paisaje épico 3" class="hero-slide">
-        </div>
-        <!-- Contenido de Texto del Hero -->
-        <div class="absolute inset-0 flex flex-col justify-center items-start p-8 md:p-16 z-10 bg-black bg-opacity-30">
-            <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold hero-text-animate">Una aventura épicamente
-                emocionante</h1>
-            <p class="text-custom-hero-text font-ephesis text-2xl sm:text-3xl md:text-4xl mt-0 hero-text-animate"
-                style="animation-delay: 0.3s;">By Master Kevin</p>
-        </div>
-    </section>
-
-    <!-- Bienvenida -->
-    <section id="bienvenida" class="py-12 md:py-20 bg-white">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <!-- Contenedor Izquierdo (Texto) -->
-            <div class="md:w-1/2 text*text-center md:text-right">
-                <h2 class="text-3xl font-bold mb-6">¡Bienvenidos!</h2>
-                <div id="welcome-text-container" class="text-lg md:text-xl text-gray-700 leading-relaxed">
-                    <p class="welcome-line opacity-0" data-delay="0">Bienvenidos sean a esta aventura,</p>
-                    <p class="welcome-line opacity-0" data-delay="1">Creada por mí Master Kevin el todo poderoso,</p>
-                    <p class="welcome-line opacity-0" data-delay="2">¡Brindemos por nuestros aventureros!,</p>
-                    <p class="welcome-line opacity-0" data-delay="3">Esperando lleguen al final de esta epica aventura
-                    </p>
-                </div>
+    <main>
+        <section id="hero" class="h-95vh relative overflow-hidden bg-gray-800">
+            <div id="hero-carousel" class="absolute inset-0 w-full h-full">
+                <img src="img/carrusel-1.jpeg" alt="Paisaje épico 1" class="hero-slide">
+                <img src="img/carrusel-2.jpeg" alt="Paisaje épico 2" class="hero-slide">
+                <img src="img/carrusel-3.jpeg" alt="Paisaje épico 3" class="hero-slide">
             </div>
-            <!-- Contenedor Derecho (Video) -->
-            <div class="md:w-1/2 w-full max-w-lg mx-auto">
-                <video src="vdo/brindis.mp4" autoplay loop muted playsinline
-                    class="w-full rounded-lg shadow-xl aspect-video object-cover"></video>
+            <div
+                class="absolute inset-0 flex flex-col justify-center items-start p-8 md:p-16 z-10 bg-black bg-opacity-30">
+                <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold hero-text-animate">Una aventura
+                    épicamente emocionante</h1>
+                <p class="text-custom-hero-text font-ephesis text-2xl sm:text-3xl md:text-4xl mt-0 hero-text-animate"
+                    style="animation-delay: 0.3s;">By Master Kevin</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-
-    <!-- Aventureros -->
-    <section id="personajes" class="bg-custom-aventureros-bg py-12 md:py-20">
-        <div class="container mx-auto px-4">
-            <h1
-                class="text-white text-stroke-black-1 text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 uppercase">
-                Aventureros</h1>
-
-            <!-- Carrusel de Tarjetas (Swiper.js) -->
-            <!-- Contenedor principal del carrusel con un poco más de padding lateral para las flechas si sobresalen -->
-            <div class="relative px-4 sm:px-8">
-                <div class="character-swiper-container overflow-hidden pb-12">
-                    <!-- pb-12 para dar espacio a la paginación si se usa -->
-                    <div class="swiper-wrapper">
-                        <!-- Tarjeta Rómulo -->
-                        <div class="swiper-slide flex justify-center"> <!-- Asegúrate que swiper-slide está aquí -->
-                            <div class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
-                                <h3
-                                    class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
-                                    Rómulo</h3>
-                                <div class="h-48 mb-3 overflow-hidden rounded">
-                                    <img src="img/romulo.jpg" alt="Rómulo" class="w-full h-full object-cover">
-                                </div>
-                                <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
-                                    Entre la espesura del bosque vive Rómulo, de raza Lupinde clase cruzado, de pelaje
-                                    blanco y algunos mechones grises, ojos verdes ultramarine encendidos, de complexión
-                                    atlética y fuerte, blande su espadón y vida junto con su ardiente fe en la diosa
-                                    Ehlonna y protege todo lo vivo y bondadoso.
-                                </p>
-                                <a href="romulo.html"
-                                    class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
-                            </div>
-                        </div>
-
-                        <!-- Tarjeta Rhaan’Anhta -->
-                        <div class="swiper-slide flex justify-center">
-                            <div class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
-                                <h3
-                                    class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
-                                    Rhaan’Anhta</h3>
-                                <div class="h-48 mb-3 overflow-hidden rounded">
-                                    <img src="img/ranata.jpg" alt="Rhaan’Anhta" class="w-full h-full object-cover">
-                                </div>
-                                <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
-                                    Un Grippli en toda su extensión, con una mente peculiar y un síndrome de abstinencia
-                                    que nunca se va, su gecko inseparable, un Ranger maestro de muchas formas, con la
-                                    misión de saber que sucedió con sus antiguos compañero y maestros.
-                                </p>
-                                <a href="rhananhta.html"
-                                    class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
-                            </div>
-                        </div>
-
-                        <!-- Tarjeta Puh lee do -->
-                        <div class="swiper-slide flex justify-center">
-                            <div class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
-                                <h3
-                                    class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
-                                    Puh lee do</h3>
-                                <div class="h-48 mb-3 overflow-hidden rounded bg-gray-200">
-                                    <img src="img/puhleedo.jpeg" alt="Puh lee do" class="w-full h-full object-cover">
-                                </div>
-                                <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
-                                    Descripción de Puh lee do. Este personaje es un enigma envuelto en misterio, con
-                                    habilidades que sorprenden a propios y extraños. Su lealtad es tan fuerte como su
-                                    determinación.
-                                </p>
-                                <a href="puhleedo.html"
-                                    class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
-                            </div>
-                        </div>
-
-                        <!-- Tarjeta Hengeyokay -->
-                        <div class="swiper-slide flex justify-center">
-                            <div class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
-                                <h3
-                                    class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
-                                    Hengeyokay</h3>
-                                <div class="h-48 mb-3 overflow-hidden rounded bg-gray-200">
-                                    <img src="img/hengeyokay.jpeg" alt="Hengeyokay" class="w-full h-full object-cover">
-                                </div>
-                                <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
-                                    Hengeyokay, el cambiaformas astuto. Sus orígenes son inciertos, pero su
-                                    adaptabilidad es legendaria. Siempre tiene un as bajo la manga, o quizás, una nueva
-                                    forma.
-                                </p>
-                                <a href="hengeyokay.html"
-                                    class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
-                            </div>
-                        </div>
-
-                        <!-- Tarjeta Erick -->
-                        <div class="swiper-slide flex justify-center">
-                            <div class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
-                                <h3
-                                    class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
-                                    Erick</h3>
-                                <div class="h-48 mb-3 overflow-hidden rounded bg-gray-200">
-                                    <img src="img/erick.jpg" alt="Erick" class="w-full h-full object-cover">
-                                </div>
-                                <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
-                                    Erick, el guerrero valiente y noble. Su corazón es tan grande como su fuerza. No
-                                    teme a ningún desafío y siempre está dispuesto a proteger a los inocentes.
-                                </p>
-                                <a href="erick.html"
-                                    class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
-                            </div>
-                        </div>
-
-                        <!-- Tarjeta Master Kevin -->
-                        <div class="swiper-slide flex justify-center">
-                            <div class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
-                                <h3
-                                    class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
-                                    Master Kevin</h3>
-                                <div class="h-48 mb-3 overflow-hidden rounded">
-                                    <img src="img/masterkevin.jpeg" alt="Master Kevin"
-                                        class="w-full h-full object-cover">
-                                </div>
-                                <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
-                                    Solo una frase lo describe ‘El todo poderoso’.
-                                </p>
-                                <a href="masterkevin.html"
-                                    class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
-                            </div>
-                        </div>
+        <section id="bienvenida" class="py-12 md:py-20 bg-white">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h2 class="text-3xl font-bold mb-6">¡Bienvenidos!</h2>
+                    <div id="welcome-text-container" class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                        <p class="welcome-line opacity-0" data-delay="0">Bienvenidos sean a esta aventura,</p>
+                        <p class="welcome-line opacity-0" data-delay="1">Creada por mí Master Kevin el todo poderoso,
+                        </p>
+                        <p class="welcome-line opacity-0" data-delay="2">¡Brindemos por nuestros aventureros!,</p>
+                        <p class="welcome-line opacity-0" data-delay="3">Esperando lleguen al final de esta epica
+                            aventura</p>
                     </div>
-                    <!-- Paginación del carrusel -->
-                    <div class="swiper-pagination"></div>
                 </div>
-                <!-- Botones de navegación del carrusel (Fuera del contenedor swiper-wrapper pero dentro del contenedor relativo) -->
-                <div
-                    class="swiper-button-prev character-swiper-button-prev text-custom-card-title hover:text-opacity-70 absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer p-2">
-                    <!-- Puedes usar un SVG o un carácter de flecha aquí -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                </div>
-                <div
-                    class="swiper-button-next character-swiper-button-next text-custom-card-title hover:text-opacity-70 absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
+                <div class="md:w-1/2 w-full max-w-lg mx-auto">
+                    <video src="vdo/brindis.mp4" autoplay loop muted playsinline
+                        class="w-full rounded-lg shadow-xl aspect-video object-cover"></video>
                 </div>
             </div>
+        </section>
 
-            <!-- Comentario sobre tamaño de imágenes para tarjetas ... (sin cambios) -->
-        </div>
-    </section>
+        <section id="personajes" class="bg-custom-aventureros-bg py-12 md:py-20">
+            <div class="container mx-auto px-4">
+                <h1
+                    class="text-white text-stroke-black-1 text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 uppercase">
+                    Aventureros</h1>
+                <div class="relative px-4 sm:px-8">
+                    <div class="character-swiper-container overflow-hidden pb-12">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide flex justify-center">
+                                <div
+                                    class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
+                                    <h3
+                                        class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
+                                        Rómulo</h3>
+                                    <div class="h-48 mb-3 overflow-hidden rounded"><img src="img/romulo.jpg"
+                                            alt="Rómulo" class="w-full h-full object-cover"></div>
+                                    <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">Entre
+                                        la espesura del bosque vive Rómulo...</p>
+                                    <a href="romulo.html"
+                                        class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide flex justify-center">
+                                <div
+                                    class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
+                                    <h3
+                                        class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
+                                        Rhaan’Anhta</h3>
+                                    <div class="h-48 mb-3 overflow-hidden rounded"><img src="img/ranata.jpg"
+                                            alt="Rhaan’Anhta" class="w-full h-full object-cover"></div>
+                                    <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">Un
+                                        Grippli en toda su extensión...</p>
+                                    <a href="rhananhta.html"
+                                        class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide flex justify-center">
+                                <div
+                                    class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
+                                    <h3
+                                        class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
+                                        Puh lee do</h3>
+                                    <div class="h-48 mb-3 overflow-hidden rounded bg-gray-200"><img
+                                            src="img/puhleedo.jpeg" alt="Puh lee do" class="w-full h-full object-cover">
+                                    </div>
+                                    <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
+                                        Descripción de Puh lee do...</p>
+                                    <a href="puhleedo.html"
+                                        class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide flex justify-center">
+                                <div
+                                    class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
+                                    <h3
+                                        class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
+                                        Hengeyokay</h3>
+                                    <div class="h-48 mb-3 overflow-hidden rounded bg-gray-200"><img
+                                            src="img/hengeyokay.jpeg" alt="Hengeyokay"
+                                            class="w-full h-full object-cover"></div>
+                                    <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
+                                        Hengeyokay, el cambiaformas astuto...</p>
+                                    <a href="hengeyokay.html"
+                                        class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide flex justify-center">
+                                <div
+                                    class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
+                                    <h3
+                                        class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
+                                        Erick</h3>
+                                    <div class="h-48 mb-3 overflow-hidden rounded bg-gray-200"><img src="img/erick.jpg"
+                                            alt="Erick" class="w-full h-full object-cover"></div>
+                                    <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">
+                                        Erick, el guerrero valiente y noble...</p>
+                                    <a href="erick.html"
+                                        class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide flex justify-center">
+                                <div
+                                    class="character-card bg-white rounded-lg shadow-xl p-6 w-72 md:w-80 flex flex-col">
+                                    <h3
+                                        class="text-custom-card-title font-ephesis font-bold text-2xl mb-3 text-center h-10 flex items-center justify-center">
+                                        Master Kevin</h3>
+                                    <div class="h-48 mb-3 overflow-hidden rounded"><img src="img/masterkevin.jpeg"
+                                            alt="Master Kevin" class="w-full h-full object-cover"></div>
+                                    <p class="font-ephesis text-lg text-black mb-4 text-ellipsis-custom flex-grow">Solo
+                                        una frase lo describe ‘El todo poderoso’.</p>
+                                    <a href="masterkevin.html"
+                                        class="mt-auto block w-full bg-custom-card-title text-white text-center py-2 rounded hover:bg-opacity-80 transition-colors duration-300">Visitar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div
+                        class="swiper-button-prev character-swiper-button-prev text-custom-card-title hover:text-opacity-70 absolute left-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                    </div>
+                    <div
+                        class="swiper-button-next character-swiper-button-next text-custom-card-title hover:text-opacity-70 absolute right-0 top-1/2 -translate-y-1/2 z-10 cursor-pointer p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Footer -->
     <footer id="footer"
-        class="bg-gray-900 text-red-500 text-lg text-center min-h-[90px] flex items-center justify-center">
+        class="bg-gray-900 text-red-500 text-lg text-center min-h-[90px] flex items-center justify-center mt-12">
         <p>© derechos reservados Unit00 2025</p>
     </footer>
 

@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'ephesis': ['Ephesis', 'cursive'],
-        'noto-sans-gothic': ['"Noto Sans Gothic"', 'sans-serif'], // Asegúrate de que el nombre coincida con Google Fonts
+        //'ephesis': ['Ephesis', 'cursive'],
+        'Edu-VIC-WA-NT-Hand': ['"Edu VIC WA NT Hand"', 'sans-serif'], // Asegúrate de que el nombre coincida con Google Fonts
       },
       colors: {
         'custom-hero-text': '#9E9B9B',
@@ -27,17 +27,17 @@ module.exports = {
           '100%': { opacity: '1' },
         },
         letterAppear: {
-            '0%': { width: '0', opacity: '0'},
-            '100%': { width: '100%', opacity: '1'},
+          '0%': { width: '0', opacity: '0' },
+          '100%': { width: '100%', opacity: '1' },
         },
         // Para el carrusel de imágenes (si se hace con keyframes, aunque JS es más flexible)
         slideLeft: {
-            '0%': { transform: 'translateX(100%)' },
-            '100%': { transform: 'translateX(0%)' },
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0%)' },
         },
         slideOutLeft: {
-            '0%': { transform: 'translateX(0%)' },
-            '100%': { transform: 'translateX(-100%)' },
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
         }
       },
       animation: {
